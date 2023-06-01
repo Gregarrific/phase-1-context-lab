@@ -1,5 +1,66 @@
 /* Your Code Here */
-
+function createEmployeeRecord(employee) {
+    return {
+        firstName: employee[0],
+        familyName: employee[1],
+        title: employee[2],
+        payPerHour: employee[3],
+        timeInEvents: [],
+        timeOutEvents: [],
+    }
+}
+function createEmployeeRecords(array) {
+    return array.map(x => createEmployeeRecord(x));
+}
+function createTimeInEvent(time) {
+    this.timeInEvents.push({
+        type: "TimeIn",
+        hour: parseInt(time.slice(-4)),
+        date: time.slice(0, 10),
+    });
+    return this;
+}
+function createTimeOutEvent(time) {
+    this.timeOutEvents.push({
+        type: "TimeOut",
+        hour: parseInt(time.slice(-4)),
+        date: time.slice(0, 10),
+    });
+    return this;
+}
+function hoursWorkedOnDate(date) {
+    let timeIn, timeOut, hoursWorked;
+    this.timeInEvents.forEach(record => {
+        if(record.date === date) {
+            timeIn = record.hour;
+        }
+    });
+    this.timeOutEvents.forEach(record => {
+        if(record.date === date) {
+            timeOut = record.hour;
+        }
+    });
+    return hoursWorked = (timeOut - timeIn) / 100;
+}
+function wagesEarnedOnDate(date) {
+    let payAmount;
+    return payAmount = hoursWorkedOnDate.call(this, date) * this.payPerHour; 
+}
+function calculatePayroll(employeeArray) {
+    let totalPayroll = 0;
+    this.forEach(employee => {
+        totalPayroll = totalPayroll + allWagesFor(employee);
+    });
+    return totalPayroll;
+}
+function findEmployeeByFirstName(collection, searchName) {
+    let employeeList = createEmployeeRecords(collection);
+    console.log(collection);
+    console.log(employeeList);
+    console.log(searchName);
+    return employeeList.filter(x => x.firstName === searchName);
+    // return filteredEmployee;
+}
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
