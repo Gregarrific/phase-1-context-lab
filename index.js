@@ -48,18 +48,15 @@ function wagesEarnedOnDate(date) {
 }
 function calculatePayroll(employeeArray) {
     let totalPayroll = 0;
-    this.forEach(employee => {
-        totalPayroll = totalPayroll + allWagesFor(employee);
+    employeeArray.forEach(employee => {
+        totalPayroll = totalPayroll + allWagesFor.call(employee);
     });
+    console.log(totalPayroll);
     return totalPayroll;
 }
-function findEmployeeByFirstName(collection, searchName) {
-    let employeeList = createEmployeeRecords(collection);
-    console.log(collection);
-    console.log(employeeList);
-    console.log(searchName);
-    return employeeList.filter(x => x.firstName === searchName);
-    // return filteredEmployee;
+function findEmployeeByFirstName(srcArray, firstName) {
+    let employeeList = createEmployeeRecords(srcArray);
+    return srcArray.find(items => items.firstName === firstName);
 }
 /*
  We're giving you this function. Take a look at it, you might see some usage
@@ -81,4 +78,3 @@ const allWagesFor = function () {
 
     return payable
 }
-
